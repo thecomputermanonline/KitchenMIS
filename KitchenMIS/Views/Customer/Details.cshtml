@@ -1,0 +1,146 @@
+@model KitchenMIS.ViewModels.CustomerDetailViewModel
+
+@{ ViewData["Title"] = "Details"; }
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.FullName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.Email)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td width="20%"> @Html.DisplayFor(model => model.Customer.FullName)</td>
+                <td width="20%"> @Html.DisplayFor(model => model.Customer.PhoneNumber)</td>
+                <td width="20%"> @Html.DisplayFor(model => model.Customer.Email)</td>
+                <td width="20%">
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-controller="Customer" asp-action="Edit" asp-route-Id="@Model.Customer.Id" class="btn btn-info w-75">Update</a>
+                        <a asp-controller="Customer" asp-action="Index"  class="btn btn-danger w-75">Back</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div>
+    <h4>Customer Details</h4>
+    <hr />
+    @if (@Model.CustomerDetail != null)
+    {
+
+<div>
+    @if (ViewBag.Message != null)
+    {
+<div class="alert alert-primary">
+    test test test
+</div>}
+
+    <form method="post" asp-controller="CustomerDetail"
+          asp-action="Edit" asp-route-id="@Model.CustomerDetail.Id">
+        <div class="border p-3">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label asp-for="Customer.CustomerDetail.Nationality"></label>
+                            <input asp-for="CustomerDetail.Nationality" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.Nationality" class="text-danger"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.BirthDate"></label>
+                            <input asp-for="CustomerDetail.BirthDate" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.BirthDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.Faith"></label>
+                            <input asp-for="CustomerDetail.Faith" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.Faith" class="text-danger"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.Spice"></label>
+                            <input asp-for="CustomerDetail.Spice" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.Spice" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.Protein"></label>
+                            <input asp-for="CustomerDetail.Protein" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.Protein" class="text-danger"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.Sex"></label>
+                            <input asp-for="CustomerDetail.Sex" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.Sex" class="text-danger"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.Status"></label>
+                            <input asp-for="CustomerDetail.Status" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.Status" class="text-danger"></span>
+                        </div>
+                        <div class="col-3">
+                            <label asp-for="CustomerDetail.DishId"></label>
+                            <input asp-for="CustomerDetail.DishId" class="form-control" />
+                            <span asp-validation-for="CustomerDetail.DishId" class="text-danger"></span>
+                        </div>
+                        @*<div class="col-3">
+                                <label asp-for="CustomerDetail.CustomerId"></label>
+                                <input asp-for="CustomerDetail.CustomerId" class="form-control" />
+                                <span asp-validation-for="CustomerDetail.CustomerId" class="text-danger"></span>
+                            </div>
+                            <div class="col-3">
+                                <label asp-for="CustomerDetail.Id"></label>
+                                <input asp-for="CustomerDetail.Id" class="form-control" />
+                                <span asp-validation-for="CustomerDetail.Id" class="text-danger"></span>
+                            </div>*@
+                        <input type="hidden" data-val="true" data-val-required="The Id field is required." id="CustomerId" asp-for="CustomerDetail.CustomerId" value="@Model.Customer.Id" />
+                        <input type="hidden" data-val="true" data-val-required="The Id field is required." id="CustomerDetailId" asp-for="CustomerDetail.Id" value="@Model.CustomerDetail.Id" />
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-8 offset-2 row">
+                            <div class="col">
+                                <button type="submit" value="save" class="btn btn-info w-75">Update</button>
+
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>}
+</div>

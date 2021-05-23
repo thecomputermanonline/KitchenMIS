@@ -1,0 +1,62 @@
+@model IEnumerable<KitchenMIS.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-black-50 pl-3">Orders</h2>
+
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Order" asp-action="Create" class="btn btn-primary">New Order</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td width="40%">
+        @item.Customer.FullName
+    </td>
+    <td width="40%">@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+   
+    <td width="30%">
+        <div class="w-100 btn-group" role="group">
+            <a asp-controller="Order" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-info mx-1">Update</a>
+            <a asp-controller="Order" asp-action="Details" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Details</a>
+            <a asp-controller="Order" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Delete</a>
+        </div>
+    </td>
+</tr>
+}
+    </tbody>
+</table> }
+else
+{
+<p>No items created yet</p>}
+
+</div>

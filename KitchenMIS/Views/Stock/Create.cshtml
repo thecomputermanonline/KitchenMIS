@@ -1,0 +1,73 @@
+@model KitchenMIS.Models.Stock
+
+@{ ViewData["Title"] = "Create"; }
+
+
+
+<div class="row pt-4">
+
+    <h2 class="text-black-50 pl-3">Create New Stock </h2>
+    <hr />
+
+</div>
+<hr />
+
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="item"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="CategoryId"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="initialstock"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="restocklevel"></label>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <input asp-for="item" class="form-control" />
+                        <span asp-validation-for="item" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="CategoryId" class="form-control" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="initialstock" class="form-control" />
+                        <span asp-validation-for="initialstock" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="restocklevel" class="form-control" />
+                        <span asp-validation-for="restocklevel" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
